@@ -1,0 +1,27 @@
+{
+  "config": {
+    "tcn": {
+      "channels": 256,
+      "num_layers": 5,
+      "kernel_size": 5,
+      "dropout": 0.2010668412143401,
+      "lr": 0.0007643328368599419,
+      "weight_decay": 8.155903941971067e-06,
+      "mask_ratio": 0.17456661895011033,
+      "mean_span_length": 2,
+      "margin": 0.3508949352495885,
+      "batch_size": 1,
+      "n_triplets": 20
+    },
+    "lambda_loss": 0.1,
+    "n_epochs": 17,
+    "max_dilation": 32
+  },
+  "seed": 42,
+  "n_features": 181,
+  "fit_stats": {
+    "loss": 0.020934438332915306,
+    "recon_loss": 0.18634243309497833,
+    "rank_loss": 0.0025557733606547117
+  }
+}

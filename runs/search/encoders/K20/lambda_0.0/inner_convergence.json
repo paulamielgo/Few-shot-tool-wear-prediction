@@ -1,0 +1,8 @@
+{
+  "status": "converged",
+  "total_improvement": 0.15672135104735693,
+  "tail_improvement": 0.0,
+  "tail_share_of_improvement": 0.0,
+  "n_trials": 25,
+  "n_tail": 5
+}

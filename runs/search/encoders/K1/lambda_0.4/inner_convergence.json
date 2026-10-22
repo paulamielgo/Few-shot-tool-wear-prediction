@@ -1,0 +1,8 @@
+{
+  "status": "still_improving",
+  "total_improvement": 0.004333916474242491,
+  "tail_improvement": 0.0003272076959461856,
+  "tail_share_of_improvement": 0.07549930827944186,
+  "n_trials": 25,
+  "n_tail": 5
+}
