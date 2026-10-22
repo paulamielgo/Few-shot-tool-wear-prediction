@@ -1,8 +1,13 @@
 # Tool-wear prediction
 
-Predicts cumulative tool wear of a CNC machine from high-frequency sensor data
-(accelerometers, acoustic emission) and controller data (loads, feed rate,
-spindle speed).
+Code for predicting the cumulative flank wear of CNC milling tools from
+high-frequency sensor data (accelerometers, acoustic emission) and controller
+data (loads, feed rate, spindle speed), developed on the
+[PHM Asia Pacific 2025 Data Challenge](https://phmap25.org/datachallenge.html).
+
+A causal temporal convolutional network, trained with self-supervision on the
+unlabelled sensor windows, encodes each cut; an autoregressive SVR combines
+this embedding with controller features to predict wear at the measured cuts.
 
 ## Method
 
