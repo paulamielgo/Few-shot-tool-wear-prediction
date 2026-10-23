@@ -1,4 +1,4 @@
-# Tool-wear prediction
+# Few-Shot Tool Wear Prediction Using Self-Supervised Learning and Multimodal Feature Fusion
 
 Code for predicting the cumulative flank wear of CNC milling tools from
 high-frequency sensor data (accelerometers, acoustic emission) and controller
@@ -126,7 +126,7 @@ units, or `--no-early-stop` to always run the full budget.
 ```bash
 python -m toolwear train \
     --config runs/search/best_config.json \
-    --sensor-features features/features_sensor_train_K5.csv \
+    --sensor-features features/features_sensor_train_K10.csv \
     --controller-features features/features_controller_train.csv \
     --labels Training_Dataset/trainset_toolwear_measurement.csv \
     --output-dir runs/model
@@ -139,7 +139,7 @@ The sensor features file must match the `K` stored in the configuration.
 ```bash
 python -m toolwear predict \
     --model-dir runs/model \
-    --sensor-features features/features_sensor_eval_K5.csv \
+    --sensor-features features/features_sensor_eval_K10.csv \
     --controller-features features/features_controller_eval.csv \
     --labels Evaluation_Dataset/evalset_toolwear_measurement.csv \
     --output-dir runs/predictions
@@ -149,20 +149,6 @@ python -m toolwear predict \
 prediction and the remaining cuts are scored (`metrics.json`,
 `predictions.png`). Without it, the training median is used as the anchor.
 
-### Python API
-
-```python
-import pandas as pd
-from toolwear import ModelConfig, ToolWearModel
-from toolwear.data import load_labels
-
-model = ToolWearModel(ModelConfig.load("best_config.json")).fit(
-    pd.read_csv("features/features_sensor_train_K5.csv"),
-    load_labels("trainset_toolwear_measurement.csv"),
-    pd.read_csv("features/features_controller_train.csv"),
-)
-predictions = model.predict(sensor_df, controller_df, initial_wear={1: 61.2, 2: 58.9})
-```
 
 ## Search outputs
 
