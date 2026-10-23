@@ -274,10 +274,10 @@ def main() -> None:
     eval_sensor_dir = args.eval_sensor_dir or args.eval_controller_dir.parent / "Sensor_Data"
 
     splits = {
-        "train": (TrainDataLoader(str(args.train_controller_dir), str(train_sensor_dir)),
-                  args.train_datasets, TRAIN_OUTPUT_NAME),
-        "eval": (EvalDataLoader(str(args.eval_controller_dir), str(eval_sensor_dir)),
-                 args.eval_datasets, EVAL_OUTPUT_NAME),
+        "train": (TrainDataLoader(str(args.train_controller_dir), str(train_sensor_dir),
+            set_available=list(args.train_datasets)), args.train_datasets, TRAIN_OUTPUT_NAME),
+        "eval": (EvalDataLoader(str(args.eval_controller_dir), str(eval_sensor_dir),
+            set_available=list(args.eval_datasets)), args.eval_datasets, EVAL_OUTPUT_NAME),
     }
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
