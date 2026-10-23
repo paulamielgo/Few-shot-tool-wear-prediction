@@ -130,6 +130,23 @@ python scripts/extract_sensor_features.py \
 When recomputing, options 1 and 2 only need `-k 10`, the number of windows of
 the selected configuration; the full search (option 3) needs every value.
 
+### Functionality
+
+The code can be used at three levels, from the quickest to the most complete:
+
+1. **Predict with the selected model**: applies the final model of our
+   experiments to the evaluation data, reproducing the reported results.
+2. **Retrain the model from the included search**: trains the encoder and the
+   regressor again with the configuration selected in our search process.
+3. **Run the complete experiment**: repeats the whole cross-validation hyperparameter
+   search and fits the model it selects.
+
+For convenience and reproducibility, `results/search/` provides the outputs of
+both levels of training obtained in our experiments: the complete search
+(option 3: Optuna storage, trial summary, convergence and termination
+reports) and the configuration and final model derived from it (option 2:
+`best_config.json` and `model/`).
+
 ### 1. Predict with the selected model
 
 ```bash
