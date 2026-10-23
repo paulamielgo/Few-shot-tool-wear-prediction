@@ -421,10 +421,10 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     splits = {
-        "train": (TrainDataLoader(str(args.train_controller_dir), str(args.train_sensor_dir)),
-                  args.train_datasets),
-        "eval": (EvalDataLoader(str(args.eval_controller_dir), str(args.eval_sensor_dir)),
-                 args.eval_datasets),
+        "train": (TrainDataLoader(str(args.train_controller_dir), str(args.train_sensor_dir),
+            set_available=list(args.train_datasets)), args.train_datasets),
+        "eval": (EvalDataLoader(str(args.eval_controller_dir), str(args.eval_sensor_dir),
+            set_available=list(args.eval_datasets)), args.eval_datasets),
     }
 
     for split, (loader, dataset_ids) in splits.items():
