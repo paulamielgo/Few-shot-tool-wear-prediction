@@ -45,7 +45,7 @@ from scipy.signal import find_peaks, hilbert, welch
 from scipy.stats import kurtosis, skew
 
 from data_loader_evalset import DataLoader as EvalDataLoader
-from Estancia2026.codigoLimpio.scripts.data_loader_trainset import DataLoader as TrainDataLoader
+from data_loader_trainset import DataLoader as TrainDataLoader
 
 logger = logging.getLogger(__name__)
 
