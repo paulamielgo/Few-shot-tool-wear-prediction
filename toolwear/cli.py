@@ -65,12 +65,16 @@ def _predict(args: argparse.Namespace) -> None:
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    predictions.to_csv(out_dir / "predictions.csv", index=False)
+    table = predictions
+    if labels is not None:
+        table = predictions.merge(labels, on=["dataset", "cut"], how="left")
+        table["error"] = table["prediction"] - table["measurement"]
+        table = table[["dataset", "cut", "measurement", "prediction", "error"]]
+    table.sort_values(["dataset", "cut"]).to_csv(out_dir / "predictions.csv", index=False)
     logger.info("Predictions written to %s", out_dir / "predictions.csv")
 
     if labels is not None and (labels["cut"] != 1).any():
         merged, metrics = evaluate_predictions(predictions, labels)
-        merged.to_csv(out_dir / "predictions_vs_measured.csv", index=False)
         (out_dir / "metrics.json").write_text(json.dumps(metrics, indent=2))
         plot_predictions(merged, f"RMSE={metrics['rmse']:.3f}  MAPE={metrics['mape']:.2f}%  "
                                  f"R2={metrics['r2']:.3f}", out_dir / "predictions.png")
