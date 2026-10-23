@@ -130,7 +130,7 @@ python scripts/extract_sensor_features.py \
 When recomputing, options 1 and 2 only need `-k 10`, the number of windows of
 the selected configuration; the full search (option 3) needs every value.
 
-### 1. Predict with the included model
+### 1. Predict with the selected model
 
 ```bash
 python -m toolwear predict \
